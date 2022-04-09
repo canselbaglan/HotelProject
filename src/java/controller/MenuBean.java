@@ -7,6 +7,7 @@ package controller;
 import dao.MenuDAO;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
 /**
  *
@@ -14,7 +15,7 @@ import jakarta.inject.Named;
  */
 @Named(value = "menuBean")
 @SessionScoped
-public class MenuBean {
+public class MenuBean implements Serializable {
 
     private MenuDAO menuDao;
 

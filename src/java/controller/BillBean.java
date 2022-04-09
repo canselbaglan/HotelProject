@@ -2,12 +2,9 @@
 package controller;
 
 import dao.BillDAO;
-import entity.Bill;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 
 @Named(value = "billBean")

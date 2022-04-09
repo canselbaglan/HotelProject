@@ -7,6 +7,7 @@ package controller;
 import dao.RoomDAO;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 
 /**
  *
@@ -14,7 +15,7 @@ import jakarta.inject.Named;
  */
 @Named(value = "roomBean")
 @SessionScoped
-public class RoomBean {
+public class RoomBean implements Serializable{
 
     private RoomDAO roomDao;
 
