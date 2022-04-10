@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
--->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <head>
         <title>Odalar</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div>
+            <ul>
+                <ui:repeat value="#{roomBean.rooms}" var="rooms">
+                    <li>
+                        <p>Oda Numarası: #{rooms.roomNo}  Yatak Sayısı: #{rooms.bedNumber}  Manzara: #{rooms.location}  Oda Dolu Mu: #{rooms.isFull}</p>
+                    </li>
+                </ui:repeat>
+            </ul>
+        </div>
     </body>
 </html>

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
--->
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head>
         <title>Oda Bilgilerini Güncelle</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,17 +10,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
     <body>
         <div align="center">
             <h1>Oda Bilgilerini Güncelle</h1>
-            <form>
+           
+            <h:form>
+                <label for="id">Oda Id'sini Giriniz</label><br/>
+                <h:inputText value="#{roomBean.entity.id}"/><br/>
                 <label for="roomNumber">Oda Numarasını Giriniz</label><br/>
-                <input type="number" id="roomNumber" name="roomNumber"/><br/>
+                <h:inputText value="#{roomBean.entity.roomNo}"/><br/>
                 <label for="bedSize">Yatak Sayısını Giriniz</label><br/>
-                <input type="number" id="bedSize" name="bedSize"/><br/>
+                <h:inputText value="#{roomBean.entity.bedNumber}"/><br/>
                 <label for="isItHasView">Manzarası Var Mı?</label><br/>
-                <input type="checkbox" id="isItHasView" name="isItHasView"/><br/>  
+                <h:inputText value="#{roomBean.entity.location}"/><br/><br/>
                 <label for="isItFull">Oda Dolu Mu?</label><br/>
-                <input type="checkbox" id="isItFull" name="isItFull"/><br/>
-                <input type="submit" id="submit" value="Güncelle"/>
-            </form>
+                <h:inputText value="#{roomBean.entity.isFull}"/><br/><br/>
+                <h:commandButton action="#{roomBean.updateRoom}" value="Güncelle"/>
+            </h:form>
         </div>
     </body>
 </html>
