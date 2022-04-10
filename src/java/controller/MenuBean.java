@@ -5,9 +5,11 @@
 package controller;
 
 import dao.MenuDAO;
+import entity.Menu;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -18,6 +20,8 @@ import java.io.Serializable;
 public class MenuBean implements Serializable {
 
     private MenuDAO menuDao;
+    private List<Menu> menus;
+    private Menu entity;
 
     public MenuBean() {
     }
@@ -31,6 +35,41 @@ public class MenuBean implements Serializable {
 
     public void setMenuDao(MenuDAO menuDao) {
         this.menuDao = menuDao;
+    }
+
+    public List<Menu> getMenus() {
+        return this.getMenuDao().getAllMenus();
+    }
+
+    public void setMenus(List<Menu> menus) {
+        this.menus = menus;
+    }
+
+    public Menu getEntity() {
+        if(this.entity==null){
+            this.entity=new Menu();
+        }
+        return entity;
+    }
+
+    public void setEntity(Menu entity) {
+        this.entity = entity;
+    }
+
+   
+    public String saveMenu() {
+        this.getMenuDao().createMenu(this.getEntity());
+        return "index.xhtml";
+    }
+    
+    public String updateMenu() {
+        this.getMenuDao().updateMenu(this.getEntity());
+        return "index.xhtml";
+    }
+    
+    public String deleteMenu() {
+        this.getMenuDao().deleteMenu(this.getEntity().getId());
+        return "index.xhtml";
     }
 
 }
