@@ -17,6 +17,8 @@ public class MalfunctionBean implements Serializable {
     private MalfunctionDAO malfunctionDao;
     private List<Malfunction> malfunctions;
     private Malfunction entity;
+    private Malfunction malfunction;
+    private Integer malfunctionId;
     
     public MalfunctionBean() {
     }
@@ -69,6 +71,27 @@ public class MalfunctionBean implements Serializable {
         this.getMalfunctionDao().deleteMalfunction(this.getEntity().getId());
         return "index.xhtml";
     }
+
+    public Malfunction getMalfunction() {
+        return this.getMalfunctionDao().getMalfunction(this.malfunctionId);
+    }
+
+    public void setMalfunction(Malfunction malfunction) {
+        this.malfunction = malfunction;
+    }
+
+    public Integer getMalfunctionId() {
+        if(this.malfunctionId==null){
+            this.malfunctionId=0;
+        }
+        return malfunctionId;
+    }
+
+    public void setMalfunctionId(Integer malfunctionId) {
+        this.malfunctionId = malfunctionId;
+    }
+    
+    
     
     
 }
