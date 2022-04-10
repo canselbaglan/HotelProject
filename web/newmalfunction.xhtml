@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head>
-        <title>Odayı Sil</title>
+        <title>Yeni Arıza Kaydı Ekle</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
         <div align="center">
-            <h1>Odayı Sil</h1>
+            <h1>Yeni Arıza Kaydı Ekle</h1>
             <h:form>
-                <label for="roomNumber">Oda Numarasını Giriniz</label><br/>
-                <h:inputText value="#{roomBean.entity.roomNo}"/><br/>
-                <h:commandButton action="#{roomBean.deleteRoom}" value="Sil"/>
+                <label for="malfunction">Arızayı Giriniz</label><br/>
+                <h:inputText value="#{malfunctionBean.entity.name}"/><br/>
+                <h:commandButton action="#{malfunctionBean.saveMalfunction}" value="Kaydet"/>
             </h:form>
         </div>
     </body>
