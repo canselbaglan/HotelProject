@@ -6,6 +6,7 @@ package dao;
 
 import entity.Menu;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,7 +25,7 @@ public class MenuDAO {
     public void createMenu(Menu menu) {
         try {
             Statement st = this.getDb().createStatement();
-            String query = "intert into menu (food,drink,desserts) values('" + menu.getFood() + "','" + menu.getDrink() + "','" + menu.getDesserts() + ")";
+            String query = "INSERT INTO menu (food,drink,desserts) values('" + menu.getFood() + "','" + menu.getDrink() + "','" + menu.getDesserts() + "')";
             int r = st.executeUpdate(query);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -60,6 +61,25 @@ public class MenuDAO {
         }
         return menu;
     }
+
+    public void updateMenu(Menu menu) {
+        try {
+            String query = "UPDATE menu SET food='" + menu.getFood() + "', drink='" + menu.getDrink() + "', desserts='" + menu.getDesserts() + "' WHERE id='" + menu.getId() + "'";
+            this.getDb().prepareStatement(query).executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void deleteMenu(Long id) {
+        try {
+            String query = "DELETE FROM menu WHERE id = '" + id + "'";
+            this.getDb().prepareStatement(query).executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
 
     public Connection getDb() {
         if (this.db == null) {

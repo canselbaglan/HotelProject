@@ -26,7 +26,7 @@ public class BillDAO {
     public void createBill(Bill bill) {
         try {
             Statement st = this.getDb().createStatement();
-            String query = "intert into bill (customerid,date,total) values('" + bill.getCustomerid() + "','" + bill.getDate() + "','" + bill.getTotal() + ")";
+            String query = "INSERT INTO bill (customerid,date,total) VALUES('" + bill.getCustomerid() + "','" + bill.getDate() + "','" + bill.getTotal() + "')";
             int r = st.executeUpdate(query);
         } catch (SQLException ex) {
             ex.printStackTrace();

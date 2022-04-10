@@ -24,7 +24,7 @@ public class RoomDAO {
     public void createRoom(Room room) {
         try {
             Statement st = this.getDb().createStatement();
-            String query = "intert into room (roomno,bednumber,location,isfull) values('" + room.getRoomNo() + "','" + room.getBedNumber() + "','" + room.getLocation() + "','" + room.getIsFull() + ")";
+            String query = "INSERT INTO room (roomno,bednumber,location,isfull) VALUES('" + room.getRoomNo() + "','" + room.getBedNumber() + "','" + room.getLocation() + "','" + room.getIsFull() + "')";
             int r = st.executeUpdate(query);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -59,6 +59,24 @@ public class RoomDAO {
             ex.printStackTrace();
         }
         return room;
+    }
+
+    public void updateRoom(Room room) {
+        try {
+            String query = "UPDATE room SET roomNo='" + room.getRoomNo() + "', bedNumber='" + room.getBedNumber() + "', location='" + room.getLocation() + "', isFull='" + room.getIsFull() + "'  WHERE id='" + room.getId() + "'";
+            this.getDb().prepareStatement(query).executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void deleteRoom(Long roomNo) {
+        try {
+            String query = "DELETE FROM room WHERE roomno = '" + roomNo + "'";
+            this.getDb().prepareStatement(query).executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 
     public Connection getDb() {
