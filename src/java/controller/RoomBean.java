@@ -21,7 +21,9 @@ public class RoomBean implements Serializable{
 
     private RoomDAO roomDao;
     private List<Room> rooms;
+    private Room room;
     private Room entity;
+    private Integer roomNo;
 
     public RoomBean() {
     }
@@ -69,6 +71,25 @@ public class RoomBean implements Serializable{
     public String deleteRoom() {
         this.getRoomDao().deleteRoom(this.getEntity().getRoomNo());
         return "index.xhtml";
+    }
+
+    public Room getRoom() {
+        return this.getRoomDao().getRoom(this.roomNo);
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Integer getRoomNo() {
+        if(this.roomNo==null){
+            this.roomNo=0;
+        }
+        return roomNo;
+    }
+
+    public void setRoomNo(Integer roomNo) {
+        this.roomNo = roomNo;
     }
     
     

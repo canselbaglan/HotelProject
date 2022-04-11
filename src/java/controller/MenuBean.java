@@ -22,6 +22,8 @@ public class MenuBean implements Serializable {
     private MenuDAO menuDao;
     private List<Menu> menus;
     private Menu entity;
+    private Integer menuId;
+    private Menu menu;
 
     public MenuBean() {
     }
@@ -71,5 +73,27 @@ public class MenuBean implements Serializable {
         this.getMenuDao().deleteMenu(this.getEntity().getId());
         return "index.xhtml";
     }
+
+    public Integer getMenuId() {
+        if(this.menuId==null){
+            this.menuId=0;
+        }
+        return menuId;
+    }
+
+    public void setMenuId(Integer menuId) {
+        this.menuId = menuId;
+    }
+
+    public Menu getMenu() {
+        return this.getMenuDao().getMenu(this.menuId);
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+    
+    
+    
 
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <head>
+        <title>Arıza Detayı</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div align="center">
+            <h:form>
+                <label for="malfunctionId">Arıza Id'sini Giriniz</label><br/>
+                <h:inputText value="#{malfunctionBean.malfunctionId}"/><br/>
+                <h:commandButton action="#{malfunctionBean.getMalfunction}" value="Getir"/>
+            </h:form>
+            <p>Arıza: #{malfunctionBean.malfunction.name}  Tarih: #{malfunctionBean.malfunction.date}</p>
+        </div>
+    </body>
+</html>
