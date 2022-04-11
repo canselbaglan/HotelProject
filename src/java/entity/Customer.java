@@ -7,30 +7,30 @@ public class Customer {
     private Long id;
     private String name;
     private String surname;
-    private Long phoneNumber;
-    private Date customerLogin;
-    private Date customerExit;
+    private Long phonenumber;
+    private Date customerlogin;
+    private Date customerexit;
     private Long RoomID;
 
     public Customer() {
     }
 
-    public Customer(Long id, String name, String surname, Long phoneNumber, Date customerLogin, Date customerExit, Long RoomID) {
+    public Customer(Long id, String name, String surname, Long phoneNumber, Date customerlogin, Date customerexit, Long RoomID) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.phoneNumber = phoneNumber;
-        this.customerLogin = customerLogin;
-        this.customerExit = customerExit;
+        this.phonenumber = phoneNumber;
+        this.customerlogin = customerlogin;
+        this.customerexit = customerexit;
         this.RoomID = RoomID;
     }
 
-    public Customer(Long id, String name, String surname, Long phoneNumber, Date customerLogin, Long RoomID) {
+    public Customer(Long id, String name, String surname, Long phonenumber, Date customerlogin, Long RoomID) {
         this.id = id;
         this.name = name;
         this.surname = surname;
-        this.phoneNumber = phoneNumber;
-        this.customerLogin = customerLogin;
+        this.phonenumber = phonenumber;
+        this.customerlogin = customerlogin;
         this.RoomID = RoomID;
     }
     
@@ -61,27 +61,27 @@ public class Customer {
     }
 
     public Long getPhoneNumber() {
-        return phoneNumber;
+        return phonenumber;
     }
 
     public void setPhoneNumber(Long phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        this.phonenumber = phonenumber;
     }
 
     public Date getCustomerLogin() {
-        return customerLogin;
+        return customerlogin;
     }
 
     public void setCustomerLogin(Date customerLogin) {
-        this.customerLogin = customerLogin;
+        this.customerlogin = customerLogin;
     }
 
     public Date getCustomerExit() {
-        return customerExit;
+        return customerexit;
     }
 
     public void setCustomerExit(Date customerExit) {
-        this.customerExit = customerExit;
+        this.customerexit = customerExit;
     }
 
     public Long getRoomID() {
