@@ -16,14 +16,16 @@
             <h:form>
                 <label for="name">Müşteri Adını Giriniz</label><br/>
                 <h:inputText value="#{customerBean.entity.name}"/><br/>
-                <label for="Surname">Müşter Soyadını Giriniz</label><br/>
+                <label for="surname">Müşter Soyadını Giriniz</label><br/>
                 <h:inputText value="#{customerBean.entity.surname}"/><br/>
-                <label for="PhoneNumber">Müşteri Telefon Numarasını Giriniz</label><br/>
-                <h:inputText value="#{customerBean.entity.phoneNumber}"/><br/><br/>
-                <label for="CustomerLogin">Müşteri Giriş Zamanı Giriniz</label><br/>
-                <h:inputText value="#{customerBean.entity.customerLogin}"/><br/><br/>
-                <label for="Customerexit">Müşteri Çıkış Zamanı Giriniz</label><br/>
-                <h:inputText value="#{customerBean.entity.customerExit}"/><br/><br/>
+                <label for="phonenumber">Müşteri Telefon Numarasını Giriniz</label><br/>
+                <h:inputText value="#{customerBean.entity.phonenumber}"/><br/><br/>
+                <label for="customerlogin">Müşteri Giriş Zamanı Giriniz</label><br/>
+                <h:inputText value="#{customerBean.entity.customerlogin}"/><br/><br/>
+                <label for="customerexit">Müşteri Çıkış Zamanı Giriniz</label><br/>
+                <h:inputText value="#{customerBean.entity.customerexit}"/><br/><br/>
+                <label for="roomid">ID Giriniz</label><br/>
+                <h:inputText value="#{customerBean.entity.roomid}"/><br/><br/>
                 <h:commandButton action="#{customerBean.saveCustomer}" value="Kaydet"/>
             </h:form>
         </div>

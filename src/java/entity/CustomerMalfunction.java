@@ -21,6 +21,10 @@ public class CustomerMalfunction {
         this.malfunctionId = malfunctionId;
         this.customerId = customerId;
     }
+
+    public CustomerMalfunction(long aLong, long aLong0) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public Long getId() {
         return id;

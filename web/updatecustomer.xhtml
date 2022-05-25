@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <head>
+        <title>Müşteriyi Güncelle</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div align="center">
+            <h1>Müşteriyi Güncelle</h1>
+            <h:form>
+                <label for="id">Müşteri Id'sini Giriniz</label><br/>
+                <h:inputText value="#{customerBean.entity.id}"/><br/>
+                <label for="name">Müşteri Adını Giriniz</label><br/>
+                <h:inputText value="#{customerBean.entity.name}"/><br/>
+                <label for="surname">Müşteri SoyAdını Giriniz</label><br/>
+                <h:inputText value="#{customerBean.entity.surname}"/><br/>
+                <label for="customerlogin">müşteri Giriş Giriniz</label><br/>
+                <h:inputText value="#{customerBean.entity.customerlogin}"/><br/><br/>
+                <label for="customerexit">Müşteri çıkış Giriniz</label><br/>
+                <h:inputText value="#{customerBean.entity.customerexit}"/><br/><br/>
+                <label for="roomid">Müşteri oda Giriniz</label><br/>
+                <h:inputText value="#{customerBean.entity.roomid}"/><br/><br/>
+                <h:commandButton action="#{customerBean.updateCustomer}" value="Güncelle"/>
+            </h:form>
+        </div>
+    </body>
+</html>

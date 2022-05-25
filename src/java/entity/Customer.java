@@ -3,39 +3,40 @@ package entity;
 
 import java.util.Date;
 
-public class Customer {
+public class Customer { //veritabanımda kullandığım isimde bir nesne tanımlıyorum
+    //veritabanındaki alanları buraya yazıyorum
     private Long id;
     private String name;
     private String surname;
     private Long phonenumber;
     private Date customerlogin;
     private Date customerexit;
-    private Long RoomID;
+    private Long roomid;
 
-    public Customer() {
+    
+    // 1 adet bos contructer ve 1 adet full constructer her zaman tanımlanmalıdır.
+    
+    public Customer() { 
+    //boş constructer tanımladım
     }
 
-    public Customer(Long id, String name, String surname, Long phoneNumber, Date customerlogin, Date customerexit, Long RoomID) {
-        this.id = id;
-        this.name = name;
-        this.surname = surname;
-        this.phonenumber = phoneNumber;
-        this.customerlogin = customerlogin;
-        this.customerexit = customerexit;
-        this.RoomID = RoomID;
-    }
-
-    public Customer(Long id, String name, String surname, Long phonenumber, Date customerlogin, Long RoomID) {
+    public Customer(Long id, String name, String surname, Long phonenumber, Date customerlogin, Date customerexit, Long roomid) {
+        // full constructer tanımladım
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.phonenumber = phonenumber;
         this.customerlogin = customerlogin;
-        this.RoomID = RoomID;
+        this.customerexit = customerexit;
+        this.roomid = roomid;
     }
+
+ 
     
     
     
+    //tamamı için getter setter metodlarını oluşturdum.
+
     public Long getId() {
         return id;
     }
@@ -60,38 +61,44 @@ public class Customer {
         this.surname = surname;
     }
 
-    public Long getPhoneNumber() {
+    public Long getPhonenumber() {
         return phonenumber;
     }
 
-    public void setPhoneNumber(Long phoneNumber) {
+    public void setPhonenumber(Long phonenumber) {
         this.phonenumber = phonenumber;
     }
 
-    public Date getCustomerLogin() {
+    public Date getCustomerlogin() {
         return customerlogin;
     }
 
-    public void setCustomerLogin(Date customerLogin) {
-        this.customerlogin = customerLogin;
+    public void setCustomerlogin(Date customerlogin) {
+        this.customerlogin = customerlogin;
     }
 
-    public Date getCustomerExit() {
+    public Date getCustomerexit() {
         return customerexit;
     }
 
-    public void setCustomerExit(Date customerExit) {
-        this.customerexit = customerExit;
+    public void setCustomerexit(Date customerexit) {
+        this.customerexit = customerexit;
     }
 
-    public Long getRoomID() {
-        return RoomID;
+    public Long getRoomid() {
+        return roomid;
     }
 
-    public void setRoomID(Long RoomID) {
-        this.RoomID = RoomID;
+    public void setRoomid(Long roomid) {
+        this.roomid = roomid;
     }
-    
-    
-    
+
+    public Long getCustomerId() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+  
+ 
+
+   
 }

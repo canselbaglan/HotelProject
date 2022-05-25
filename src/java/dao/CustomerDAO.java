@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import util.DBConnection;
+import java.util.Date;
 /**
  *
  * @author CANSEL
@@ -21,24 +22,24 @@ public class CustomerDAO {
     
     private Connection db;
 
-    public void createCustomer(Customer customer) {
+    public void createCustomer(Customer customer) { //oluşturma
         try {
             Statement st = this.getDb().createStatement();
-            String query = "INSERT INTO customer (name,surname,phonenumber,customerlogin,customerexit,RoomID) VALUES ('" + customer.getName() + "','" + customer.getSurname() + "','" + customer.getPhoneNumber() + "','" + customer.getCustomerLogin() + "','" + customer.getCustomerExit() + "','" + customer.getRoomID() + "')";
+            String query = "INSERT INTO customer (name,surname,phonenumber,customerlogin,customerexit,roomid) values ('" + customer.getName() + "','" + customer.getSurname() + "','" + customer.getPhonenumber() + "','" + customer.getCustomerlogin() + "','" + customer.getCustomerexit() + "','" + customer.getRoomid() + "')";
             int r = st.executeUpdate(query);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
     
-    public List<Customer> getAllCustomers() {
+    public List<Customer> getAllCustomers() { //List olarak return eden metod // ccutomer listesi çekme
         List<Customer> customers = new ArrayList<>();
         try {
             Statement st = this.getDb().createStatement();
             
             String query = "select * from customer";
             ResultSet rs = st.executeQuery(query);
-            while (rs.next()) {
+            while (rs.next()) { //çağırana istediği bilgiyi dönüş yapıyor yazdırma yok
                 customers.add(new Customer(rs.getLong("id"), rs.getString("name"), rs.getString("surname"), rs.getLong("phonenumber"),rs.getDate("customerlogin"),rs.getDate("customerexit"),rs.getLong("RoomID")));
             }
         } catch (SQLException ex) {
@@ -63,6 +64,20 @@ public Customer getCustomer(int id) {
     }
    
 
+    public void updateCustomer(Customer entity) {
+        //
+    }
+
+    public void deleteCustomer(Customer c) {
+        try {
+            String query = "DELETE FROM customer WHERE id = "+c.getId();
+            this.getDb().prepareStatement(query).executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+   
     public Connection getDb() {
        if(this.db == null)  {
           //her seferinde bir nesnenin olduğundan emin olmak 
@@ -71,25 +86,10 @@ public Customer getCustomer(int id) {
        }
            return db;
     }
-
+    
+    
     public void setDb(Connection db) {
         this.db = db;
     }
-
-    public void updateCustomer(Customer entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void deleteCustomer(Long id) {
-        try {
-            String query = "DELETE FROM customer WHERE id = '" + "'";
-            this.getDb().prepareStatement(query).executeUpdate();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-   
-    
     
 }
