@@ -1,10 +1,14 @@
 
 package entity;
 
-import java.util.Date;
 
-public class Customer { //veritabanımda kullandığım isimde bir nesne tanımlıyorum
-    //veritabanındaki alanları buraya yazıyorum
+  import java.util.Date;
+
+/**
+ *
+ * @author CANSEL
+ */
+public class Customer {
     private Long id;
     private String name;
     private String surname;
@@ -13,15 +17,10 @@ public class Customer { //veritabanımda kullandığım isimde bir nesne tanıml
     private Date customerexit;
     private Long roomid;
 
-    
-    // 1 adet bos contructer ve 1 adet full constructer her zaman tanımlanmalıdır.
-    
-    public Customer() { 
-    //boş constructer tanımladım
+    public Customer() {
     }
 
     public Customer(Long id, String name, String surname, Long phonenumber, Date customerlogin, Date customerexit, Long roomid) {
-        // full constructer tanımladım
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -30,12 +29,6 @@ public class Customer { //veritabanımda kullandığım isimde bir nesne tanıml
         this.customerexit = customerexit;
         this.roomid = roomid;
     }
-
- 
-    
-    
-    
-    //tamamı için getter setter metodlarını oluşturdum.
 
     public Long getId() {
         return id;
@@ -93,12 +86,12 @@ public class Customer { //veritabanımda kullandığım isimde bir nesne tanıml
         this.roomid = roomid;
     }
 
-    public Long getCustomerId() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    @Override
+    public String toString() {
+        return "Customer{" + "id=" + id + ", name=" + name + ", surname=" + surname + ", phonenumber=" + phonenumber + ", customerlogin=" + customerlogin + ", customerexit=" + customerexit + ", roomid=" + roomid + '}';
     }
-
-  
- 
-
-   
+    
+    
+    
 }
+
