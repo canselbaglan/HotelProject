@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       
+        <!-- veriatabanı kayıt işlemi için form ayzıyoruz --> 
+      <h:form>
+            Name : <h:inputText value="#{customerBean.entity.name}"/>
+            Surname : <h:inputText value="#{customerBean.entity.surname}"/>
+            Phone Number : <h:inputText value="#{customerBean.entity.phonenumber}"/>
+            Login : <h:inputText value="#{customerBean.entity.customerlogin}"/>
+            Exit : <h:inputText value="#{customerBean.entity.customerexit}"/>
+            Room : <h:inputText value="#{customerBean.entity.roomid}"/>
+            <p> </p>
+            
+            <h:commandButton rendered="#{customerBean.entity.id!=0}" action="#{customerBean.create}" value= "Kaydet"/>
+            <h:commandButton rendered="#{customerBean.entity.id!=0}" action="#{customerBean.update}" value= "Güncelle"/>
+            
+        </h:form>
+
+        <hr />
+        <h:form>
+            <h:dataTable border ="1" value="#{customerBean.list}" var="c">
+            <h:column>
+                <f:facet name="header">ID </f:facet>
+                    #{c.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Name</f:facet>
+                    #{c.name}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Surname</f:facet>
+                    #{c.surname}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Number</f:facet>
+                    #{c.phonenumber}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Login</f:facet>
+                    #{c.customerlogin}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Exit</f:facet>
+                    #{c.customerexit}
+            </h:column>
+            <h:column>
+                <f:facet name="header">room</f:facet>
+                    #{c.roomid}
+            </h:column>
+            <h:column>
+                <f:facet name="header">DELETE</f:facet>
+                <h:commandButton action="#{customerBean.delete(c)}" value="Sil"/>
+            </h:column>
+             <h:column>
+                <f:facet name="header">UPDATE</f:facet>
+                <h:commandButton action="#{customerBean.setEntity(c)}" value="Düzenle"/>
+            </h:column>
+            </h:dataTable>
+        </h:form>
+          <!-- #{customerBean.list} liste çekmek için kullanılır --> 
+
+    </h:body>
+</html>
+
