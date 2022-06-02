@@ -1,0 +1,134 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package dao;
+
+import entity.Category;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import util.DBConnection;
+
+/**
+ *
+ * @author CANSEL
+ */
+public class CategoryDAO {
+    
+    private Connection db ; ////categorydao dbconnectionu kullanacak sonra değiştireceğiz simdilik nesne olarak yapıyoruz.
+    
+   
+    //getter setterlarını oluşturuyorum.
+
+    public Connection getDb() {
+        
+       if(this.db==null){
+           DBConnection dbc= new DBConnection();
+           this.db = dbc.connect();
+       }
+        return db;
+    }
+
+    public void setDb(Connection db) {
+        this.db = db;
+    }
+
+    
+    //veriatabanı 4 işlem var bunları oluşturamaya başlıyorum.
+    
+    
+    //CREATE İŞLEMİ
+    
+    public void createCategory(Category c){//bir kategori nesnesi gelecek ve ben bunu veritabanına eklicem.az önce yaptığımız aynı şeyleri nesnel olarak yapıyoruz aslında 
+    //category entity import ediyoruz.
+    
+    try {
+
+           
+           Statement st =this.getDb().createStatement();//burası artık this değil this.getDb çünkü getDb metodu ne yapıordu bir tane Connection metodu return ediyordu yukarıda bana ona ihtiyacım var
+           
+           //ekleme SORGU BÖLÜMÜ
+           String query = "insert into category (name,created)values('"+c.getName()+"' , '"+ c.getCreated()+"')";
+           //burada artık statik elle bizim eklediğimiz veri kullanmıcaz,burada parametre olarak yer alan gelen Category c nesnesindeki title ne ise onu eklicez.
+           //o yüzden c.getTitle,c.get.... leri düzeltiyroum.
+           int r = st.executeUpdate(query);//basarılı oldugu zaman 1 sonucunu dönüyor
+           
+          
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+         
+         
+       
+    }
+    
+    //VERİ ÇEKME (veri getirme işlemi) (LİST olarak return eden)
+    public List <Category> getCategryList(){
+        
+        List<Category> categoryList = new ArrayList<>();// arraylist türünde bir nesne oluşturuyorum.
+        
+        try {
+
+             Statement st =this.getDb().createStatement();//bu statement bizim sorguları çalıştırmamıza yarayan nesne
+  
+            //veri çekme kodu:
+            String query ="select * from category";
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){//burası bir işlem yapmıcak burası veritabanında gerekli işlemleri yapan metod ekrana yazdırma işlemi yapmıyor println falan yok
+                //SADECE ÇAĞIRANA İSTEDİĞİ BİLGİYİ DÖNÜŞ YAPIYOR
+                //döngü içinde kaç nesnemiz varsa o kadar nesne cekiyorduk veriatabnından şimdi ise napıcaz  kac satır varsa o kadar nesne oluşturcaz
+                //yani yukarıdaki oluşturmuş oldugumuz categoryList.add diyoruz ve her seferinde yeni bir category oluşturuyorum.
+                //yeni oluşturulan kategoide hangi alanlarımız olacaksa ekliyorum.
+                categoryList.add(new Category(rs.getLong("id"),rs.getString("name"),rs.getTimestamp("created"),rs.getTimestamp("updated")));
+            }
+           
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return categoryList;
+    }
+    
+    public void delete(Category c){
+    
+    try {
+
+           
+           Statement st =this.getDb().createStatement();//burası artık this değil this.getDb çünkü getDb metodu ne yapıordu bir tane Connection metodu return ediyordu yukarıda bana ona ihtiyacım var
+           
+           
+           String query = "delete from category where id="+c.getId();
+           //yani id si bana parametre olarak gelen categorye eşit olan nesneyi silicek
+           int r = st.executeUpdate(query);
+          
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    
+    public void update(Category c){
+        
+        try {
+
+           
+           Statement st =this.getDb().createStatement();
+           
+           
+           String query = "update category set name= '"+c.getName()+"' where id="+c.getId();
+           
+           int r = st.executeUpdate(query);
+          
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+    }
+}
+        
+          
