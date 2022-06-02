@@ -6,12 +6,10 @@ package controller;
 
 import dao.CustomerDAO;
 import entity.Customer;
-import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+import jakarta.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Date;
-
 
 
 /**
@@ -20,105 +18,75 @@ import java.util.Date;
  */
 @Named(value = "customerBean")
 @SessionScoped
-
 public class CustomerBean implements Serializable {
 
+    /**
+     * Creates a new instance of CustomerBean
+     */
+    
     private Customer entity;
-    private CustomerDAO customerDao;
-    private List<Customer> customers;
-    private Integer customerId;
-    private Customer customer;
-  
+    private CustomerDAO dao;
+    private List<Customer>list;
     
     
-    public CustomerBean() {//bos constructer
-     
+    public CustomerBean() {
     }
-
     
-    public CustomerDAO getCustomerDao() {
-        if(this.customerDao==null){
-            this.customerDao=new CustomerDAO();
+    
+    public Customer getEntity() {
+        if(this.entity == null){//Ayrıyeten erişim yapacagım bütün nesnelrin null olmadıgından da if ile emin oluyorum.
+            this.entity = new Customer ();//eger null ise yenisini oluştur diyecem.
         }
-
-        return customerDao;
-    }
-    
-    
-         
-    public void setCustomerDao(CustomerDAO customerDao) {
-        this.customerDao =customerDao;
-    }
-    
-      public List<Customer> getCustomers() {
-        return this.getCustomerDao().getAllCustomers();
+        return entity;
     }
 
-      public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
-    }
-        
-     public Customer getEntity() { //erisim yapacagım butun nesnelerin null olmadıgından emin olmak icin eger null ise yenisi olusturulur
-        if(this.entity==null){
-            this.entity=new Customer();
-        }
-          return entity;
-     }
-
-      public void setEntity(Customer entity) {
+    public void setEntity(Customer entity) {
         this.entity = entity;
     }
 
+    public CustomerDAO getDao() {
+        if(this.dao ==null){
+         this.dao = new CustomerDAO();
+        }
+        return dao;
+    }
+
+    public void setDao(CustomerDAO dao) {
+        this.dao = dao;
+    }
+
+    public List<Customer> getList() {
+        this.list = this.getDao().getCustomerList();
+        return list;
+    }
+
+    public void setList(List<Customer> list) {
+        this.list = list;
+    }
+    
+    
+      public String create(){ //title ı xhtml kısmında set ile aldım o yuzden burdayok
       
-     
-    public String saveCustomer() {
-        this.getCustomerDao().createCustomer(this.getEntity());
-        return "index.xhtml";
-    }
-    
-     
-     public String updateCustomer() {
-        this.getCustomerDao().updateCustomer(this.getEntity());
-        return "index.xhtml";
-    }
-     
-     
-     /*public String deleteCustomer() {
-        this.getCustomerDao().deleteCustomer(this.getEntity().getCustomerId());
-        return "index.xhtml";
-    }*/
-  
-     
-     public Integer getCustomerId() {
-        if(this.customerId==null){
-            this.customerId=0;
-        }
-        return customerId;
-    }
-    
-      public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
-
-     
-      public Customer getCustomer() {
-        return this.getCustomerDao().getCustomer(this.customerId);
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    
-    /*public CustomerBean(Customer entity, CustomerDAO customerDao) {
-        this.entity = entity;
-        this.customerDao = customerDao;
-    }*/
-    
-    
-   
-   
-    
+        this.getDao().createCustomer(entity); //Şimdi bu nesneyi dao sınıfına göndereceğiz ve oluşturmuş olucaz.
+        this.entity= new Customer(); //butona basma işleminden sonra içini boşaltmak için bunu yazıyoruz
         
+         return "customer";
+
+    }
+    
+    
+      public void delete(Customer c){
+        
+        this.getDao().delete(c);//ile kategoriyi silme işlemi gerçekleştiriyoruz.
+    }
+    
+     public String update(){
+        
+        this.getDao().update(this.entity);
+        this.entity= new Customer();
+        
+         return "customer";
+
+    }
     
 }
