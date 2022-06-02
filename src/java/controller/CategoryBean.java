@@ -74,12 +74,12 @@ public class CategoryBean implements Serializable {
     
     
     //CREATE METODUNU OLUŞTURUYORUM
-    public String create(){ //title ı xhtml kısmında set ile aldım o yuzden burdayok
+    public void create(){ //title ı xhtml kısmında set ile aldım o yuzden burdayok
         this.entity.setCreated(new Timestamp(System.currentTimeMillis()));//created zamanını da ben burda eklemiş oldum.
         this.getDao().createCategory(entity); //Şimdi bu nesneyi dao sınıfına göndereceğiz ve oluşturmuş olucaz.
         this.entity= new Category(); //butona basma işleminden sonra içini boşaltmak için bunu yazıyoruz
         
-         return "category";
+         //return "category";
 
     }
     
@@ -99,3 +99,4 @@ public class CategoryBean implements Serializable {
 
     }
 }
+
